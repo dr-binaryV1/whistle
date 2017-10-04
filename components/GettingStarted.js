@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import {
   Text,
   View,
@@ -26,6 +27,19 @@ const RenderInput = props => {
 }
 
 export default class GettingStarted extends Component {
+  componentWillMount() {
+    const config = {
+      apiKey: "AIzaSyCkLPT51CS6ofFOVTXLmvKuM2BH_QhP8ak",
+      authDomain: "whistle-1ab07.firebaseapp.com",
+      databaseURL: "https://whistle-1ab07.firebaseio.com",
+      projectId: "whistle-1ab07",
+      storageBucket: "whistle-1ab07.appspot.com",
+      messagingSenderId: "972094348081"
+    };
+
+    firebase.initializeApp(config);
+  }
+
   state = {
     name: '',
     email: '',
