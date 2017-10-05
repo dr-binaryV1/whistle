@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { Constants } from 'expo';
 
+import { initFirebase } from './utils/api';
+
 import {
   brightYellow,
   white
@@ -20,6 +22,10 @@ function WhistleStatusBar ({ backgroundColor, ...props }) {
 }
 
 export default class App extends React.Component {
+  componentWillMount() {
+    initFirebase();
+  }
+
   render() {
     const navOptions = {
       headerTintColor: white,
