@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import { brightYellow, white } from '../utils/colors';
+import { createUserWithEmailandPassword } from '../utils/api';
 
 const RenderInput = props => {
   return (
@@ -28,22 +29,18 @@ const RenderInput = props => {
 
 export default class GettingStarted extends Component {
   componentWillMount() {
-    const config = {
-      apiKey: "AIzaSyCkLPT51CS6ofFOVTXLmvKuM2BH_QhP8ak",
-      authDomain: "whistle-1ab07.firebaseapp.com",
-      databaseURL: "https://whistle-1ab07.firebaseio.com",
-      projectId: "whistle-1ab07",
-      storageBucket: "whistle-1ab07.appspot.com",
-      messagingSenderId: "972094348081"
-    };
-
-    firebase.initializeApp(config);
+    
   }
 
   state = {
     name: '',
     email: '',
     password: ''
+  }
+
+  onNextPressed() {
+    const { email, password } = this.state;
+    createUserWithEmailandPassword(email, password);
   }
 
   onChangeName(text) {
@@ -95,7 +92,9 @@ export default class GettingStarted extends Component {
         </View>
         <View style={footerStyle}>
           <View style={{flex: 1, alignItems: 'flex-end'}}>
-            <TouchableOpacity style={buttonStyle}>
+            <TouchableOpacity
+              onPress={this.onNextPressed.bind(this)}
+              style={buttonStyle}>
               <Text style={buttonText}>Next</Text>
             </TouchableOpacity>
           </View>
